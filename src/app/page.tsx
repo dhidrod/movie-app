@@ -1,34 +1,5 @@
+import { getPopularMovies } from "@/lib/api";
 import MovieCard from "@/components/movie/MovieCard";
-
-async function getPopularMovies() {
-  const apiToken = process.env.TMDB_API_TOKEN;
-  if (!apiToken) {
-    throw new Error("TMDB API token not found");
-  }
-
-  const url =
-    "https://api.themoviedb.org/3/movie/popular?language=es-ES&page=1";
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      // Formato correcto para el token v4
-      Authorization: `Bearer ${apiToken}`,
-    },
-  };
-
-  const res = await fetch(url, options);
-
-  if (!res.ok) {
-    // Si hay un error, lo mostramos en la consola del servidor para depurar
-    const errorBody = await res.text();
-    console.error("Error fetching movies:", res.status, errorBody);
-    throw new Error("Failed to fetch movies");
-  }
-
-  const data = await res.json();
-  return data.results;
-}
 
 export default async function Home() {
   const movies = await getPopularMovies();
