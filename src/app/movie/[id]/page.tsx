@@ -1,11 +1,6 @@
-import MovieCard from "@/components/movie/MovieCard";
 import { getMovieDetails } from "@/lib/api";
+import { getRatingColor } from "@/lib/utils";
 
-function getRatingColor(rating: number) {
-  if (rating <= 30) return "text-red-500";
-  if (rating <= 70) return "text-yellow-400";
-  return "text-green-500";
-}
 
 export default async function MoviePage({
   params,
@@ -17,7 +12,7 @@ export default async function MoviePage({
   const rating = Math.round(movie.vote_average * 10);
 
   return (
-    <main className="bg-gray-900 text-white p-8 ">
+    <main className="bg-gray-900 text-white p-8 flex-grow flex flex-col ">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Poster de la película */}

@@ -5,7 +5,7 @@ export default async function Home() {
   const movies = await getPopularMovies();
 
   return (
-    <main className="bg-gray-900 text-white p-8">
+    <main className="bg-gray-900 text-white p-8 flex-grow flex flex-col">
       <h1 className="text-4xl font-bold text-center mb-8">
         Películas Populares
       </h1>
